@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 cmake_minimum_required(VERSION 3.1) ##TODO: which version is better
+=======
+cmake_minimum_required(VERSION 3.5) ##TODO: which version is better
+>>>>>>> db9495d (local change)
 
 project(STK VERSION 4.6.1)
 set (CMAKE_CXX_STANDARD 11)
@@ -12,6 +16,10 @@ SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Release" "Debug" "RelWithD
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
 if(MSVC)
+<<<<<<< HEAD
+=======
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /clr")
+>>>>>>> db9495d (local change)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /DNDEBUG")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Z7 /Ob0 /Od /RTC1 /D_ITERATOR_DEBUG_LEVEL=2 /D_STK_DEBUG_ /D__RTAUDIO_DEBUG__ /D__RTMIDI_DEBUG__")
 else()
@@ -45,6 +53,7 @@ file(GLOB STK_SRC "./src/*.cpp") # GLOB instead of GLOB_RECURSE as the asio depe
 #========================================#
 if(REALTIME)
     if(ENABLE_JACK)
+<<<<<<< HEAD
         # Try to find PkgConfig
         find_package(PkgConfig QUIET)
 
@@ -93,6 +102,15 @@ if(REALTIME)
             include_directories(${JACK_INCLUDE_DIRS})
             link_libraries(${JACK_LIBRARIES})
             add_definitions(-D__UNIX_JACK__)
+=======
+        find_library(JACK_LIBRARY jack) # find_package(JACK) # TODO: NEED FindJACK.cmake
+        if(JACK_LIBRARY)
+            message("Jack API found: ${JACK_LIBRARY}")
+            link_libraries(${JACK_LIBRARY})
+            add_definitions(-D__UNIX_JACK__)
+        else()
+            message(WARNING "JACK support requires the jack library!")
+>>>>>>> db9495d (local change)
         endif()
     endif()
 
@@ -192,6 +210,10 @@ if(COMPILE_PROJECTS)
     add_subdirectory(projects/demo)
     add_subdirectory(projects/effects)
     add_subdirectory(projects/ragamatic)
+<<<<<<< HEAD
+=======
+    add_subdirectory(projects/bowed_simulator)
+>>>>>>> db9495d (local change)
 endif()
 
 #========================================#

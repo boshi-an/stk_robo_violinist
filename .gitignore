@@ -197,3 +197,15 @@ projects/*/*.pdb
 projects/*/*.vcxproj.user
 projects/*/Release/
 projects/*/Debug/
+
+####
+# C++ Language Server and Tools
+
+# clangd cache
+.cache/
+.clangd/
+
+# compile_commands.json symlink (points to cmake-build-debug/compile_commands.json)
+compile_commands.json
+cmake-build-debug
+.vscode

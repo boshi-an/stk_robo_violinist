@@ -1,0 +1,36 @@
+CompileFlags:
+  Add:
+    - -std=c++11
+    - -D__MACOSX_CORE__
+    - -D__LITTLE_ENDIAN__
+    - -D_USE_MATH_DEFINES
+    - -I./include
+  Remove:
+    - -W*
+    - -Wall
+    - -Wextra
+
+Diagnostics:
+  ClangTidy:
+    Add: 
+      - readability-*
+      - performance-*
+      - modernize-*
+      - bugprone-*
+    Remove:
+      - readability-magic-numbers
+      - modernize-use-trailing-return-type
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+
+Index:
+  Background: Build
+  StandardLibrary: Yes
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+
+Hover:
+  ShowAKA: Yes
