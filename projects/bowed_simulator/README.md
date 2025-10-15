@@ -2,6 +2,18 @@
 
 This program demonstrates how to use the STK `Bowed` class to simulate a bowed string instrument with hardcoded control parameters.
 
+## Building
+
+```sh
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+  -DPython3_EXECUTABLE="$(which python)" \
+  -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
+```
+
+```sh
+make -j4
+```
+
 ## Features
 
 The simulator controls four key parameters of bowed string playing with **dynamic parameter changes**:

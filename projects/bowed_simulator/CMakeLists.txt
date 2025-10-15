@@ -12,13 +12,13 @@ target_include_directories(mybowed_lib PUBLIC
 target_link_libraries(mybowed_lib PUBLIC stk)
 
 # Executables
-add_executable(mybowed src/mybowed.cpp)
-target_link_libraries(mybowed PRIVATE mybowed_lib)
+# add_executable(mybowed src/mybowed.cpp)
+# target_link_libraries(mybowed PRIVATE mybowed_lib)
 
 # Set output directory
-set_target_properties(mybowed PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/projects/bowed_simulator/bin"
-)
+# set_target_properties(mybowed PROPERTIES
+#     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/projects/bowed_simulator/bin"
+# )
 
 # Minimal quick start example target
 add_executable(example_usage src/example_usage.cpp)
