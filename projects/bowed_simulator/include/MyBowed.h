@@ -28,6 +28,12 @@ namespace stk {
 class MyBowed : public Bowed
 {
 public:
+  // Control Change Numbers specific to MyBowed
+  //  - MB_ReverbT60: Reverb T60 (decay time)
+  //  - MB_ReverbMix: Reverb wet/dry mix
+  static constexpr int MB_ReverbT60 = 91;
+  static constexpr int MB_ReverbMix = 92;
+
   //! Constructor with multi-band resonance modeling
   MyBowed(StkFloat lowestFrequency = 20.0);
 

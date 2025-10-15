@@ -42,10 +42,10 @@ void MyBowed::controlChange( int number, StkFloat value )
     StkFloat normalizedValue = value * ONE_OVER_128;
     bowDown_ = (normalizedValue > 0.0);
     bowTable_.setSlope(5.0 - (4.0 * normalizedValue));
-  } else if ( number == 91 ) {
+  } else if ( number == MyBowed::MB_ReverbT60 ) {
     StkFloat t60 = 0.5 + (value * 0.02);
     violinReverb_.setT60(t60);
-  } else if ( number == 92 ) {
+  } else if ( number == MyBowed::MB_ReverbMix ) {
     reverbMix_ = value * ONE_OVER_128;
   } else {
     Bowed::controlChange(number, value);

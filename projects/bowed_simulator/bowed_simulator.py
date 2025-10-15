@@ -46,7 +46,21 @@ else:
     # Runtime bindings
     MyBowed = _mb.MyBowed  # type: ignore[attr-defined]
 
+    # Control constants exposed by the native module
+    MB_REVERB_T60: int = _mb.MB_REVERB_T60  # type: ignore[attr-defined]
+    MB_REVERB_MIX: int = _mb.MB_REVERB_MIX  # type: ignore[attr-defined]
+
+    SK_BOW_PRESSURE: int = _mb.SK_BOW_PRESSURE  # type: ignore[attr-defined]
+    SK_BOW_POSITION: int = _mb.SK_BOW_POSITION  # type: ignore[attr-defined]
+    SK_BOW_VELOCITY: int = _mb.SK_BOW_VELOCITY  # type: ignore[attr-defined]
+    SK_BASE_FREQUENCY: int = _mb.SK_BASE_FREQUENCY  # type: ignore[attr-defined]
 
 __all__ = [
     "MyBowed",
+    "MB_REVERB_T60",
+    "MB_REVERB_MIX",
+    "SK_BOW_PRESSURE",
+    "SK_BOW_POSITION",
+    "SK_BOW_VELOCITY",
+    "SK_BASE_FREQUENCY",
 ]
