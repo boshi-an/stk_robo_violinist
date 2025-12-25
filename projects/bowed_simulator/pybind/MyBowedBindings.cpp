@@ -9,18 +9,6 @@
 namespace py = pybind11;
 using namespace stk;
 
-// Helper: render N samples to a numpy array (mono)
-static py::array_t<float> render_samples(MyBowed &inst, int num_samples)
-{
-  if (num_samples < 0) num_samples = 0;
-  auto array = py::array_t<float>(num_samples);
-  auto buf = array.mutable_unchecked<1>();
-  for (int i = 0; i < num_samples; ++i) {
-    buf(i) = static_cast<float>(inst.tick());
-  }
-  return array;
-}
-
 PYBIND11_MODULE(mybowed_py, m) {
   m.doc() = "Python bindings for MyBowed (STK-based bowed string)";
 
@@ -32,7 +20,15 @@ PYBIND11_MODULE(mybowed_py, m) {
     .def("stop_bowing", &MyBowed::stopBowing, py::arg("rate"))
     .def("control_change", &MyBowed::controlChange, py::arg("number"), py::arg("value"))
     .def("tick", [](MyBowed &self){ return static_cast<float>(self.tick()); })
-    .def("render", &render_samples, py::arg("num_samples"))
+    .def("tick_n", [](MyBowed &self, int n) {
+      if (n < 0) n = 0;
+      auto array = py::array_t<float>(n);
+      auto buf = array.mutable_unchecked<1>();
+      for (int i = 0; i < n; ++i) {
+        buf(i) = static_cast<float>(self.tick());
+      }
+      return array;
+    }, py::arg("n"))
   ;
 
   // Expose control constants on the module for convenience
