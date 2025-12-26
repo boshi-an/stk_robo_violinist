@@ -6,8 +6,9 @@ This program demonstrates how to use the STK `Bowed` class to simulate a bowed s
 
 ```sh
 cmake .. -DCMAKE_BUILD_TYPE=Release \
-  -DPython3_EXECUTABLE="$(which python)" \
-  -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
+        -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+        -DPython3_EXECUTABLE="$(which python)" \
+        -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
 ```
 
 ```sh
