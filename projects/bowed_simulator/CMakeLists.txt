@@ -27,9 +27,9 @@ set_target_properties(example_usage PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/projects/bowed_simulator/bin"
 )
 
-# Pick one exact version you want
+# Require Python 3.10 or newer
 set(PYBIND11_FINDPYTHON ON)
-find_package(Python3 3.10 EXACT COMPONENTS Interpreter Development.Module REQUIRED)
+find_package(Python3 3.10 COMPONENTS Interpreter Development.Module REQUIRED)
 
 # (optional, helps older pybind11)
 set(Python_EXECUTABLE ${Python3_EXECUTABLE})
