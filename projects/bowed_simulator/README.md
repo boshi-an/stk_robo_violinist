@@ -5,13 +5,12 @@ This program demonstrates how to use the STK `Bowed` class to simulate a bowed s
 ## Building
 
 ```sh
+# Build the program (from STK root directory)
+mkdir -p build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
         -DPython3_EXECUTABLE="$(which python)" \
         -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
-```
-
-```sh
 make -j4
 ```
 
@@ -52,14 +51,11 @@ The simulation is divided into **5 segments** (1 second each for 5-second durati
 ```bash
 # Build the program (from STK root directory)
 mkdir -p build && cd build
-cmake ..
-make mybowed
-
-# Run with default parameters
-./projects/examples/mybowed
-
-# Run with custom output filename
-./projects/examples/mybowed my_custom_output.wav
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+        -DPython3_EXECUTABLE="$(which python)" \
+        -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
+make -j4
 ```
 
 ## Output
