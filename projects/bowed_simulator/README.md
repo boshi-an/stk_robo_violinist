@@ -6,12 +6,8 @@ This program demonstrates how to use the STK `Bowed` class to simulate a bowed s
 
 ```sh
 # Build the program (from STK root directory)
-mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-        -DPython3_EXECUTABLE="$(which python)" \
-        -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
-make -j4
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -S . -B build
+cmake --build build -j
 ```
 
 ## Features
@@ -50,12 +46,8 @@ The simulation is divided into **5 segments** (1 second each for 5-second durati
 
 ```bash
 # Build the program (from STK root directory)
-mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-        -DPython3_EXECUTABLE="$(which python)" \
-        -Dpybind11_DIR="$(python -c 'import pybind11; print(pybind11.get_cmake_dir())')"
-make -j4
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -S . -B build
+cmake --build build -j
 ```
 
 ## Output

@@ -1,4 +1,5 @@
-project(bowed_simulator)
+cmake_minimum_required(VERSION 3.15)
+project(bowed_simulator LANGUAGES CXX)
 
 # Layout: include/ for headers, src/ for sources
 include_directories(${CMAKE_SOURCE_DIR}/projects/bowed_simulator/include)
@@ -11,15 +12,6 @@ target_include_directories(mybowed_lib PUBLIC
 )
 target_link_libraries(mybowed_lib PUBLIC stk)
 
-# Executables
-# add_executable(mybowed src/mybowed.cpp)
-# target_link_libraries(mybowed PRIVATE mybowed_lib)
-
-# Set output directory
-# set_target_properties(mybowed PROPERTIES
-#     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/projects/bowed_simulator/bin"
-# )
-
 # Minimal quick start example target
 add_executable(example_usage src/example_usage.cpp)
 target_link_libraries(example_usage PRIVATE mybowed_lib)
@@ -27,22 +19,17 @@ set_target_properties(example_usage PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/projects/bowed_simulator/bin"
 )
 
-# Require Python 3.10 or newer
+# Python / pybind11
 set(PYBIND11_FINDPYTHON ON)
-find_package(Python3 3.10 COMPONENTS Interpreter Development.Module REQUIRED)
-
-# (optional, helps older pybind11)
-set(Python_EXECUTABLE ${Python3_EXECUTABLE})
-
+find_package(Python3 3.10 REQUIRED COMPONENTS Interpreter Development.Module)
 find_package(pybind11 CONFIG REQUIRED)
 
-pybind11_add_module(mybowed_py src/MyBowed.cpp pybind/MyBowedBindings.cpp)
+pybind11_add_module(mybowed_py pybind/MyBowedBindings.cpp)
 target_link_libraries(mybowed_py PRIVATE mybowed_lib)
 target_include_directories(mybowed_py PRIVATE
     ${CMAKE_SOURCE_DIR}/projects/bowed_simulator/include
     ${CMAKE_SOURCE_DIR}/include
 )
-# Write the module next to quick_start.py for import
 set_target_properties(mybowed_py PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/projects/bowed_simulator/lib"
 )
